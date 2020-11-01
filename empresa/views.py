@@ -37,3 +37,5 @@ class TipoServicioView( CurrentUser):
     queryset = TipoServicio.objects.all()
     serializer_class = TipoServicioSerializer
     permission_classes = [IsAuthenticated]  
+
+#ala madre tengo reclado ingles
