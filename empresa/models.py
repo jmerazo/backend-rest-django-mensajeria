@@ -59,7 +59,6 @@ class Empresa(AuthUser):
     def __str__(self):
         return self.nombre
 
-
 class Terceros(AuthUser):
     class Meta:
         verbose_name = "Tercero"

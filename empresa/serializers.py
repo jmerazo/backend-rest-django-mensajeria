@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Empresa, Historial, Estado, Evidencia, Terceros, TipoServicio
+from django.contrib.auth.models import User
 
 class CurrentUserSerializer(serializers.ModelSerializer):
      usuario = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -29,3 +30,8 @@ class TipoServicioSerializer(CurrentUserSerializer):
     class Meta:
         model = TipoServicio
         fields = '__all__'  
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
