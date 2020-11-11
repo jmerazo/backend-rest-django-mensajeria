@@ -77,5 +77,11 @@ urlpatterns = [
         'post': 'create',
         'put': 'update',
         'delete': 'destroy'
-    }))      
+    })),
+        path('usuarios/<int:pk>', UsuariosView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'post': 'create',
+        'delete': 'destroy',
+    })),     
 ]
