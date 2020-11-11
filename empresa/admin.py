@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Historial, Terceros, Estado, Empresa, Evidencia,Planilla
+from .models import Historial, Terceros, Estado, Empresa, Evidencia, Planilla
 
 # Register your models here.
 class TercerosAdmin(admin.ModelAdmin):
