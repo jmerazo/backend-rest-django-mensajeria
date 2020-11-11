@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Historial, Terceros, Estado, Empresa, Evidencia
+from .models import Historial, Terceros, Estado, Empresa, Evidencia,Planilla
 
 # Register your models here.
 class TercerosAdmin(admin.ModelAdmin):
@@ -18,3 +18,6 @@ admin.site.register(Historial, HistorialAdmin)
 class EvidenciaAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Evidencia, EvidenciaAdmin)
+class PlanillaAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Planilla, PlanillaAdmin)

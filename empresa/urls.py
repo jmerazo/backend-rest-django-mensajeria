@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EmpresaView, HistorialView, EstadoView, EvidenciaView, TercerosView, TipoServicioView
+from .views import EmpresaView, HistorialView, EstadoView, EvidenciaView, TercerosView, TipoServicioView, UsuariosView,PlanillaView
 
 urlpatterns = [
     path('empresa/',EmpresaView.as_view({
@@ -71,5 +71,27 @@ urlpatterns = [
         'get':'retrieve',
         'put': 'update',
         'delete': 'destroy',
-    })),       
+    })), 
+    path('usuarios', UsuariosView.as_view({
+        'get': 'list',
+        'post': 'create',
+        'put': 'update',
+        'delete': 'destroy'
+    })),      
+    path('usuarios/<int:pk>', UsuariosView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'delete': 'destroy',
+    })),
+    path('planilla/',PlanillaView.as_view({
+        'get' : 'list',
+        'post' : 'create',        
+
+    })),
+    path('planilla/<int:pk>', PlanillaView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'delete': 'destroy',
+    }))    
+
 ]

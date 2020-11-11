@@ -1,6 +1,6 @@
 
 from rest_framework import viewsets
-from .serializers import EmpresaSerializer, HistorialSerializer, EstadoSerializer, EvidenciaSerializer, TercerosSerializer, TipoServicioSerializer, Empresa, Historial, Estado, Evidencia, Terceros, TipoServicio
+from .serializers import EmpresaSerializer, HistorialSerializer, EstadoSerializer, EvidenciaSerializer, TercerosSerializer, TipoServicioSerializer, Empresa, Historial, Estado, Evidencia, Terceros, TipoServicio, UsuarioSerializer, User,Planilla,PlanillaSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -36,6 +36,12 @@ class TercerosView( CurrentUser):
 class TipoServicioView( CurrentUser):
     queryset = TipoServicio.objects.all()
     serializer_class = TipoServicioSerializer
-    permission_classes = [IsAuthenticated]  
+    permission_classes = [IsAuthenticated]
 
-#ala madre tengo reclado ingles
+class UsuariosView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UsuarioSerializer
+    
+class PlanillaView(viewsets.ModelViewSet):
+    queryset = Planilla.objects.all()
+    serializer_class = PlanillaSerializer

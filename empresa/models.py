@@ -45,17 +45,28 @@ class TipoServicio(AuthUser):
     def __str__(self):
         return self.nombre
 
+class Planilla(AuthUser):
+    
+    num_guia =models.IntegerField(unique=True)
+    nombres= models.CharField(max_length=255)
+    apellidos= models.CharField(max_length=255)
+    direccion= models.CharField(max_length=255)
+    ciudad= models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.nombres
 
 class Empresa(AuthUser):
 
     nombre = models.CharField(max_length=255)
     razon_social = models.CharField(max_length=255)
-    nit = models.IntegerField()
+    nit = models.IntegerField(unique=True)
     ciudad_empresa = models.TextField(null=True)
     direccion_empresa = models.TextField(null=True)
     departamento_empresa = models.TextField(null=True)
     logo = models.ImageField(upload_to='cars')
-
+    planilla_id = models.ForeignKey(
+        Planilla, null=True, blank=True, on_delete=models.RESTRICT)
     def __str__(self):
         return self.nombre
 
@@ -65,7 +76,7 @@ class Terceros(AuthUser):
         verbose_name = "Tercero"
         verbose_name_plural = "Terceros"
 
-    guia_numero = models.IntegerField()
+    guia_numero = models.IntegerField(unique=True)
     nombre_tercero = models.TextField(null=True)
     tipo_servicio = models.ForeignKey(
         TipoServicio, null=True, blank=True, on_delete=models.RESTRICT)
