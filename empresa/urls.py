@@ -70,6 +70,7 @@ urlpatterns = [
     path('tiposervicio/<int:pk>', TipoServicioView.as_view({
         'get':'retrieve',
         'put': 'update',
+        'post': 'create',
         'delete': 'destroy',
     })), 
     path('usuarios', UsuariosView.as_view({

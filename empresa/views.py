@@ -23,7 +23,8 @@ class HistorialView(CurrentUser):
 class EstadoView( CurrentUser):
     queryset = Estado.objects.all()
     serializer_class = EstadoSerializer
-    permission_classes = [IsAuthenticated]  
+    permission_classes = [IsAuthenticated] 
+     
 class EvidenciaView( CurrentUser):
     queryset = Evidencia.objects.all()
     serializer_class = EvidenciaSerializer
@@ -36,7 +37,6 @@ class TercerosView( CurrentUser):
 class TipoServicioView( CurrentUser):
     queryset = TipoServicio.objects.all()
     serializer_class = TipoServicioSerializer
-    permission_classes = [IsAuthenticated]
 
 class UsuariosView(viewsets.ModelViewSet):
     queryset = User.objects.all()
