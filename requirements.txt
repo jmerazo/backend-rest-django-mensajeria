@@ -10,8 +10,6 @@ djangorestframework-simplejwt==4.4.0
 isort==5.5.0
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
-mysql-client==0.0.1
-mysql-connector-python==8.0.21
 mysqlclient==2.0.1
 Pillow==8.0.1
 protobuf==3.13.0

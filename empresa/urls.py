@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EmpresaView, HistorialView, EstadoView, EvidenciaView, TercerosView, TipoServicioView, UsuariosView
+from .views import EmpresaView, HistorialView, EstadoView, EvidenciaView, TercerosView, TipoServicioView, UsuariosView,PlanillaView,PlanillaMensajeroView,Historico,HistoricoView
 
 urlpatterns = [
     path('empresa/',EmpresaView.as_view({
@@ -70,19 +70,48 @@ urlpatterns = [
     path('tiposervicio/<int:pk>', TipoServicioView.as_view({
         'get':'retrieve',
         'put': 'update',
-        'post': 'create',
         'delete': 'destroy',
     })), 
     path('usuarios', UsuariosView.as_view({
         'get': 'list',
         'post': 'create',
         'put': 'update',
-        'delete': 'destroy'
-    })),
-        path('usuarios/<int:pk>', UsuariosView.as_view({
+        'delete': 'destroy',
+    })),      
+    path('usuarios/<int:pk>', UsuariosView.as_view({
         'get':'retrieve',
         'put': 'update',
-        'post': 'create',
         'delete': 'destroy',
-    })),     
+    })),
+    path('planilla/',PlanillaView.as_view({
+        'get' : 'list',
+        'post' : 'create',        
+
+    })),
+    path('planilla/<int:pk>', PlanillaView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'delete': 'destroy',
+    })),    
+    path('planillamensajero/',PlanillaMensajeroView.as_view({
+        'get' : 'list',
+        'post' : 'create',        
+
+    })),
+    path('planillamensajero/<int:pk>', PlanillaMensajeroView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'delete': 'destroy',
+    })),
+     path('historico/',HistoricoView.as_view({
+        'get' : 'list',
+        'post' : 'create',        
+
+    })),
+    path('historico/<int:pk>', HistoricoView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'delete': 'destroy',
+    })),                 
+
 ]
