@@ -32,7 +32,8 @@ class EvidenciaView( CurrentUser):
 class TercerosView( CurrentUser):
     queryset = Terceros.objects.all()
     serializer_class = TercerosSerializer
-    permission_classes = [IsAuthenticated]  
+    permission_classes = [IsAuthenticated]
+    search_fields = ['guia_numero', 'id', 'nombre_tercero']
 class TipoServicioView( CurrentUser):
     queryset = TipoServicio.objects.all()
     serializer_class = TipoServicioSerializer

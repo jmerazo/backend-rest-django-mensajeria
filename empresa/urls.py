@@ -53,12 +53,15 @@ urlpatterns = [
     })),
     path('terceros/',TercerosView.as_view({
         'get' : 'list',
-        'post' : 'create',        
+        'post' : 'create',   
+        'put': 'update',
+        'delete': 'destroy',
 
     })),
     path('terceros/<int:pk>', TercerosView.as_view({
         'get':'retrieve',
         'put': 'update',
+        'post': 'create',
         'delete': 'destroy',
 
     })), 

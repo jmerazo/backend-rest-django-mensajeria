@@ -63,6 +63,8 @@ class Terceros(AuthUser):
     guia_numero = models.IntegerField(unique=True)
     nombre_tercero = models.TextField(null=True)
     tipo_servicio = models.TextField(null=True)
+    """ servicio_id = models.ForeignKey(
+        TipoServicio, null=True, blank=True, on_delete=models.RESTRICT) """
     ciudad_tercero = models.TextField(null=True)
     fecha_estado = models.DateField(max_length=255, null=True)
     fecha_ingreso = models.DateField(max_length=255, null=True)
