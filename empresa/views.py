@@ -1,6 +1,6 @@
 
 from rest_framework import viewsets
-from .serializers import EmpresaSerializer, HistorialSerializer, EstadoSerializer, EvidenciaSerializer, TercerosSerializer, TipoServicioSerializer, Empresa, Historial, Estado, Evidencia, Terceros, TipoServicio, UsuarioSerializer, User,Planilla,PlanillaSerializer,PlanillaSerializer,PlanillaMensajero,HistoricoSerializer,Historico
+from .serializers import EmpresaSerializer, HistorialSerializer, EstadoSerializer, EvidenciaSerializer, PersonaSerializer, TipoServicioSerializer, Empresa, Historial, Estado, Evidencia, Persona, TipoServicio, UsuarioSerializer, User,Planilla,PlanillaSerializer,PlanillaSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -29,9 +29,9 @@ class EvidenciaView( CurrentUser):
     serializer_class = EvidenciaSerializer
     permission_classes = [IsAuthenticated]  
 
-class TercerosView( CurrentUser):
-    queryset = Terceros.objects.all()
-    serializer_class = TercerosSerializer
+class PersonaView( CurrentUser):
+    queryset = Persona.objects.all()
+    serializer_class = PersonaSerializer
     permission_classes = [IsAuthenticated]
     search_fields = ['guia_numero', 'id', 'nombre_tercero']
 class TipoServicioView( CurrentUser):
@@ -46,10 +46,4 @@ class UsuariosView(viewsets.ModelViewSet):
 class PlanillaView(viewsets.ModelViewSet):
     queryset = Planilla.objects.all()
     serializer_class = PlanillaSerializer
-class PlanillaMensajeroView(viewsets.ModelViewSet):
-    queryset = PlanillaMensajero.objects.all()
-    serializer_class = PlanillaSerializer
-class HistoricoView(viewsets.ModelViewSet):
-    queryset = Historico.objects.all()
-    serializer_class = HistoricoSerializer  
 

@@ -10,7 +10,7 @@ class Historial(AuthUser):
     class Meta:
         verbose_name = "Historial"
         verbose_name_plural = "Historiales"
-    nombre_historial = models.TextField() 
+    nombre = models.TextField() 
     def __str__(self):
         return self.historial
 
@@ -34,73 +34,61 @@ class TipoServicio(AuthUser):
     def __str__(self):
         return self.nombre
 
-class Planilla(AuthUser):    
-    num_guia =models.IntegerField(unique=True)
-    nombres= models.CharField(max_length=255)
-    apellidos= models.CharField(max_length=255)
-    direccion= models.CharField(max_length=255)
-    ciudad= models.CharField(max_length=255) 
-    def __str__(self):
-        return self.nombres
-
 class Empresa(AuthUser):
     nombre = models.CharField(max_length=255)
     razon_social = models.CharField(max_length=255)
     nit = models.IntegerField(unique=True)
-    ciudad_empresa = models.TextField(null=True)
-    direccion_empresa = models.TextField(null=True)
-    departamento_empresa = models.TextField(null=True)
+    ciudad = models.TextField(null=True)
+    direccion = models.TextField(null=True)
+    departamento = models.TextField(null=True)
     logo = models.ImageField(upload_to='cars')
-    planilla_id = models.ForeignKey(
-        Planilla, null=True, blank=True, on_delete=models.RESTRICT)
     def __str__(self):
         return self.nombre
-
-class Terceros(AuthUser):
+    
+class Guia(AuthUser):
     class Meta:
-        verbose_name = "Tercero"
-        verbose_name_plural = "Terceros"
-    guia_numero = models.IntegerField(unique=True)
-    nombre_tercero = models.TextField(null=True)
-    tipo_servicio = models.TextField(null=True)
-    """ servicio_id = models.ForeignKey(
-        TipoServicio, null=True, blank=True, on_delete=models.RESTRICT) """
-    ciudad_tercero = models.TextField(null=True)
-    fecha_estado = models.DateField(max_length=255, null=True)
-    fecha_ingreso = models.DateField(max_length=255, null=True)
-    empresa_id = models.ForeignKey(
-        Empresa, null=True, blank=True, on_delete=models.RESTRICT)
-    def __str__(self):
-        return self.nombre_tercero
+        verbose_name = "Guia"
+        verbose_name_plural = "Guias"
+    numero = models.IntegerField(unique=True)
 
-class Historico(AuthUser):
+class Perfil(models.Model):
+    celular = models.CharField(max_length=20)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+class Persona(AuthUser):
     class Meta:
-        verbose_name = "Historico"
-        verbose_name_plural = "Historicos"
-    guia_numero = models.IntegerField(unique=True)
-    tipo_servicio = models.ForeignKey(
-        TipoServicio, null=True, blank=True, on_delete=models.RESTRICT)
-    ciudad_tercero = models.TextField(null=True)
-    fecha_estado = models.DateField(max_length=255, null=True)
-    fecha_ingreso = models.DateField(max_length=255, null=True)
-    tracking_terceros = models.CharField(max_length=255, null=True)
-    historial_id = models.ForeignKey(
-        Historial, null=True, blank=True, on_delete=models.RESTRICT)
-    estado_id = models.ForeignKey(
-        Estado, null=True, blank=True, on_delete=models.RESTRICT)
-    empresa_id = models.ForeignKey(
-        Empresa, null=True, blank=True, on_delete=models.RESTRICT)
+        verbose_name = "Persona"
+        verbose_name_plural = "Personas"
+    guia_id = models.ForeignKey(
+        Guia, null=True, blank=True, on_delete=models.RESTRICT)
     evidencia_id = models.ForeignKey(
         Evidencia, null=True, blank=True, on_delete=models.RESTRICT)
+    historial_id = models.ForeignKey(
+        Historial, null=True, blank=True, on_delete=models.RESTRICT)
+    nombres = models.TextField(null=True, max_length=50)
+    apellidos = models.TextField(null=True, max_length=50)
+    celular = models.IntegerField(null=False)
+    whatsapp = models.IntegerField(null=True)
+    correo = models.CharField(max_length=60)
+    direccion = models.CharField(max_length=60)
+    ciudad = models.TextField(null=True)
+    departamento = models.TextField(null=True)   
     def __str__(self):
-        return self.nombre_tercero
-        
-class PlanillaMensajero(AuthUser):
-    usuario= models.ForeignKey(User, null=True, blank=True, on_delete=models.RESTRICT)    
-    num_guia =models.IntegerField(unique=True)
-    nombres= models.CharField(max_length=255)
-    apellidos= models.CharField(max_length=255)
-    direccion= models.CharField(max_length=255)
-    ciudad= models.CharField(max_length=255) 
+        return self.nombres
+
+class Planilla(AuthUser):
+    nombre = models.IntegerField(unique=True)   
+    persona_id = models.ForeignKey(
+        Persona, null=True, blank=True, on_delete=models.RESTRICT, related_name='persona_repair')
+    empresa_id = models.ForeignKey(
+        Empresa, null=True, blank=True, on_delete=models.RESTRICT, related_name='empresa_repair')
+    estado_id = models.ForeignKey(
+        Estado, null=True, blank=True, on_delete=models.RESTRICT, related_name='estado_repair')
+    user = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.RESTRICT, related_name='usuario_repair')
+    tipo_servicio = models.TextField(null=True)
+    total_envios = models.IntegerField(null=True) 
+    fecha_estado = models.DateField(max_length=255, null=True)
+    fecha_ingreso = models.DateField(max_length=255, null=True) 
     def __str__(self):
         return self.nombres

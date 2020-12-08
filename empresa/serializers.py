@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Empresa, Historial, Estado, Evidencia, Terceros, TipoServicio, Planilla, PlanillaMensajero,Historico
+from .models import Empresa, Historial, Estado, Evidencia, Persona, TipoServicio, Planilla, Perfil
 from django.contrib.auth.models import User
 
 class CurrentUserSerializer(serializers.ModelSerializer):
@@ -22,16 +22,24 @@ class EvidenciaSerializer(CurrentUserSerializer):
     class Meta:
         model = Evidencia
         fields = '__all__'       
-class TercerosSerializer(CurrentUserSerializer):
+class PersonaSerializer(CurrentUserSerializer):
     class Meta:
-        model = Terceros
+        model = Persona
         fields = '__all__'        
 class TipoServicioSerializer(CurrentUserSerializer):
     class Meta:
         model = TipoServicio
         fields = '__all__'  
+class PerfilSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Perfil
+        fields = (
+            'celular'
+        )
 
 class UsuarioSerializer(serializers.ModelSerializer):
+    perfil = PerfilSerializer(many=False, read_only=False)
+
     class Meta:
         model = User
         fields = '__all__'
@@ -39,13 +47,3 @@ class PlanillaSerializer(CurrentUserSerializer):
     class Meta:
         model = Planilla
         fields = '__all__'
-class PlanillaMensajeroSerializer(CurrentUserSerializer):
-    class Meta:
-        model = PlanillaMensajero
-        fields = '__all__'
-       
-class HistoricoSerializer(CurrentUserSerializer):
-    class Meta:
-        model = Historico
-        fields = '__all__'
-       

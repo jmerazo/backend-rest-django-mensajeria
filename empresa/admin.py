@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Historial, Terceros, Estado, Empresa, Evidencia, Planilla, TipoServicio, PlanillaMensajero,Historico
+from .models import Historial, Persona, Estado, Empresa, Evidencia, Planilla, TipoServicio
 
 # Register your models here.
-class TercerosAdmin(admin.ModelAdmin):
+class PersonaAdmin(admin.ModelAdmin):
     pass
-admin.site.register(Terceros, TercerosAdmin)
+admin.site.register(Persona, PersonaAdmin)
 
 class EstadoAdmin(admin.ModelAdmin):
     pass
@@ -24,9 +24,3 @@ admin.site.register(Planilla, PlanillaAdmin)
 class TipoServicioAdmin(admin.ModelAdmin):
     pass
 admin.site.register(TipoServicio, TipoServicioAdmin)
-class PlanillaMensajeroAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(PlanillaMensajero, PlanillaMensajeroAdmin)
-class HistoricoAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Historico, HistoricoAdmin)
