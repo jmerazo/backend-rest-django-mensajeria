@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EmpresaView, HistorialView, EstadoView, EvidenciaView, PersonaView, TipoServicioView, UsuariosView,PlanillaView
+from .views import EmpresaView, HistorialView, EstadoView, EvidenciaView, PersonaView, TipoServicioView, UsuariosView,PlanillaView, GuiaView
 
 urlpatterns = [
     path('empresa/',EmpresaView.as_view({
@@ -95,6 +95,16 @@ urlpatterns = [
         'get':'retrieve',
         'put': 'update',
         'delete': 'destroy',
-    })),    
+    })),
+    path('guia/',GuiaView.as_view({
+        'get' : 'list',
+        'post' : 'create',        
+
+    })),
+    path('guia/<int:pk>', GuiaView.as_view({
+        'get':'retrieve',
+        'put': 'update',
+        'delete': 'destroy',
+    })),     
 
 ]

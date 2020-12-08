@@ -1,6 +1,6 @@
 
 from rest_framework import viewsets
-from .serializers import EmpresaSerializer, HistorialSerializer, EstadoSerializer, EvidenciaSerializer, PersonaSerializer, TipoServicioSerializer, Empresa, Historial, Estado, Evidencia, Persona, TipoServicio, UsuarioSerializer, User,Planilla,PlanillaSerializer,PlanillaSerializer
+from .serializers import EmpresaSerializer, HistorialSerializer, EstadoSerializer, EvidenciaSerializer, PersonaSerializer, TipoServicioSerializer, Empresa, Historial, Estado, Evidencia, Persona, TipoServicio, UsuarioSerializer, User,Planilla,PlanillaSerializer, Guia, GuiaSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -16,25 +16,24 @@ class EmpresaView(CurrentUser):
     serializer_class = EmpresaSerializer
     permission_classes = [IsAuthenticated]  
 
-class HistorialView(CurrentUser):
+class HistorialView(viewsets.ModelViewSet):
     queryset = Historial.objects.all()
     serializer_class = HistorialSerializer
-    permission_classes = [IsAuthenticated]  
-class EstadoView( CurrentUser):
+
+class EstadoView(viewsets.ModelViewSet):
     queryset = Estado.objects.all()
     serializer_class = EstadoSerializer
-    permission_classes = [IsAuthenticated]  
-class EvidenciaView( CurrentUser):
+  
+class EvidenciaView(viewsets.ModelViewSet):
     queryset = Evidencia.objects.all()
     serializer_class = EvidenciaSerializer
-    permission_classes = [IsAuthenticated]  
 
-class PersonaView( CurrentUser):
+class PersonaView(viewsets.ModelViewSet):
     queryset = Persona.objects.all()
     serializer_class = PersonaSerializer
     permission_classes = [IsAuthenticated]
     search_fields = ['guia_numero', 'id', 'nombre_tercero']
-class TipoServicioView( CurrentUser):
+class TipoServicioView(viewsets.ModelViewSet):
     queryset = TipoServicio.objects.all()
     serializer_class = TipoServicioSerializer
     permission_classes = [IsAuthenticated]
@@ -46,4 +45,8 @@ class UsuariosView(viewsets.ModelViewSet):
 class PlanillaView(viewsets.ModelViewSet):
     queryset = Planilla.objects.all()
     serializer_class = PlanillaSerializer
+
+class GuiaView(viewsets.ModelViewSet):
+    queryset = Guia.objects.all()
+    serializer_class = GuiaSerializer
 
