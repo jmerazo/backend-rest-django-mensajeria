@@ -11,7 +11,7 @@ class CurrentUser(viewsets.ModelViewSet):
       return self.serializer_class.Meta.model.objects.filter(usuario=user)
 
       
-class EmpresaView(CurrentUser):
+class EmpresaView(viewsets.ModelViewSet):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
     permission_classes = [IsAuthenticated]  
@@ -32,7 +32,7 @@ class PersonaView(viewsets.ModelViewSet):
     queryset = Persona.objects.all()
     serializer_class = PersonaSerializer
     permission_classes = [IsAuthenticated]
-    search_fields = ['guia_numero', 'id', 'nombre_tercero']
+    search_fields = ['nombres', 'id']
 class TipoServicioView(viewsets.ModelViewSet):
     queryset = TipoServicio.objects.all()
     serializer_class = TipoServicioSerializer
@@ -49,4 +49,6 @@ class PlanillaView(viewsets.ModelViewSet):
 class GuiaView(viewsets.ModelViewSet):
     queryset = Guia.objects.all()
     serializer_class = GuiaSerializer
+    search_fields = ['id', 'numero']
 
+    

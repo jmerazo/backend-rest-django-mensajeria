@@ -65,8 +65,8 @@ class Guia(models.Model):
         verbose_name = "Guia"
         verbose_name_plural = "Guias"
     numero = models.IntegerField(unique=True)
-    persona_g = models.ForeignKey(
-        Persona, null=True, blank=True, on_delete=models.RESTRICT)
+    persona = models.ForeignKey(
+        Persona, null=False, blank=False, on_delete=models.CASCADE, related_name='guias')
 
 
 class Evidencia(models.Model):
@@ -75,16 +75,16 @@ class Evidencia(models.Model):
         verbose_name_plural = "Evidencias"
     nombre = models.CharField(max_length=255)
     imagen = models.ImageField(upload_to='cars')
-    persona_e = models.ForeignKey(
-        Persona, null=True, blank=True, on_delete=models.RESTRICT)
+    persona = models.ForeignKey(
+        Persona, null=False, blank=False, on_delete=models.CASCADE, related_name='evidencias')
 
 class Historial(models.Model):
     class Meta:
         verbose_name = "Historial"
         verbose_name_plural = "Historiales"
     nombre = models.TextField()
-    persona_h = models.ForeignKey(
-        Persona, null=True, blank=True, on_delete=models.RESTRICT)
+    persona = models.ForeignKey(
+        Persona, null=False, blank=False, on_delete=models.CASCADE, related_name='historiales')
 
     def __str__(self):
         return self.nombre
@@ -107,3 +107,7 @@ class Planilla(models.Model):
 
     def __str__(self):
         return self.nombre
+
+# Para acceder a la clase relacionada
+# Se debe escribir en minúscular seguida de _set
+# ejemplo Persona.guia_set
